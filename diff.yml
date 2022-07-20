@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  var_prompt:
+  vars_prompt:
     - name: var
       prompt: What var?
       private: no
