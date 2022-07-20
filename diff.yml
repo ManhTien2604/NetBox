@@ -23,6 +23,7 @@
       debug:
         msg: "File Compare"
       when:  mysecondfile ==  myfirstfile
+    - name: 123  
       debug:
         msg: "File Different"
       when: mysecondfile !=  myfirstfile
