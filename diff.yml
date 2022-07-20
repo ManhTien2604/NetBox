@@ -34,4 +34,4 @@
         subject: Ansible Report
         body: System [[ ansible_hostname ]] has been successfully provisioned.
       delegate_to: localhost
-      when: myfirstfile != mysecondfile
+      failed_when: myfirstfile != mysecondfile
