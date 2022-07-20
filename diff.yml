@@ -6,18 +6,18 @@
         path : "/tmp/base.txt"
       register: myfirstfile
 
-    - name: Current SHA1
-      set_fact:
-        mf1sha1: "{{ myfirstfile.stat.checksum }}"
+#    - name: Current SHA1
+#      set_fact:
+#        mf1sha1: "{{ myfirstfile.stat.checksum }}"
 
     - name: Get cksum of my Second File (If needed you can jump this)
       stat:
         path : "/tmp/new.txt"
       register: mysecondfile
 
-    - name: Current SHA1
-      set_fact:
-        mf2sha1: "{{ mysecondfile.stat.checksum }}"
+#    - name: Current SHA1
+#      set_fact:
+#        mf2sha1: "{{ mysecondfile.stat.checksum }}"
 
 #    - name: Compilation Changed
 #      debug:
@@ -34,4 +34,4 @@
         subject: Ansible Report
         body: System [[ ansible_hostname ]] has been successfully provisioned.
       delegate_to: localhost
-      when: mf2sha1 != mf1sha1
+      when: myfirstfile != mysecondfile
