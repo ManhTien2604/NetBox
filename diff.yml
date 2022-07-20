@@ -19,19 +19,11 @@
 #      set_fact:
 #        mf2sha1: "{{ mysecondfile.stat.checksum }}"
 
-#    - name: Compilation Changed
-#      debug:
-#        msg: "File Compare"
-#      failed_when:  mf2sha1 != mf1sha1
+    - name: Compilation Changed
+      debug:
+        msg: "File Compare"
+        when:  mysecondfile ==  myfirstfile
+      debug:
+        msg: "File Different"
+        when: mysecondfile !=  myfirstfile
 
-    - name: Sending an e-mail using Gmail SMTP servers
-      mail:
-        host: smtp.gmail.com
-        port: 587
-        username: huynhvanmanhtien98@gmail.com
-        password: tienalone123456
-        to: hvtmdoan1@gmail.com
-        subject: Ansible Report
-        body: System [[ ansible_hostname ]] has been successfully provisioned.
-      delegate_to: localhost
-      failed_when: myfirstfile != mysecondfile
