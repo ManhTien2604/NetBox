@@ -4,6 +4,8 @@
     - name: Get cksum of my First file
       stat:
         path : "/tmp/base.txt"
+        checksum: sha1
+        get_checksum: yes
       register: myfirstfile
 
 #    - name: Current SHA1
@@ -13,6 +15,8 @@
     - name: Get cksum of my Second File (If needed you can jump this)
       stat:
         path : "/tmp/new.txt"
+        checksum: sha1
+        get_checksum: yes
       register: mysecondfile
 
 #    - name: Current SHA1
@@ -22,9 +26,9 @@
     - name: Compilation Changed
       debug:
         msg: "File Compare"
-      when:  mysecondfile ==  myfirstfile
+      when:  mysecondfile.stat.checksum ==  myfirstfile.stat.checksum
     - name: 123  
       debug:
         msg: "File Different"
-      when: mysecondfile !=  myfirstfile
+      when: mysecondfile.stat.checksum !=  myfirstfile.stat.checksum
 
