@@ -1,34 +1,10 @@
 ---
 - hosts: all
   tasks:
-    - name: Get cksum of my First file
-      stat:
-        path : "/tmp/base.txt"
-        checksum: sha1
-        get_checksum: yes
-      register: myfirstfile
-
-#    - name: Current SHA1
-#      set_fact:
-#        mf1sha1: "{{ myfirstfile.stat.checksum }}"
-
-    - name: Get cksum of my Second File (If needed you can jump this)
-      stat:
-        path : "/tmp/new.txt"
-        checksum: sha1
-        get_checksum: yes
-      register: mysecondfile
-
-#    - name: Current SHA1
-#      set_fact:
-#        mf2sha1: "{{ mysecondfile.stat.checksum }}"
-
-    - name: Compilation Changed
-      debug:
-        msg: "File Compare"
-      when:  mysecondfile.stat.checksum ==  myfirstfile.stat.checksum
-    - name: 123  
-      debug:
-        msg: "File Different"
-      when: mysecondfile.stat.checksum !=  myfirstfile.stat.checksum
+    - name: "Only show diff between test1.txt & test2.txt" 
+      copy:
+        src: /tmp/new.txt
+        dest: /tmp/base.txt
+      check_mode: yes
+      diff: yes
 
