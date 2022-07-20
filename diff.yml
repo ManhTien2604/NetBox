@@ -1,11 +1,10 @@
 ---
 - hosts: all
-  tasks:
   var_prompt:
     - name: var
       prompt: What var?
       private: no
-
+  tasks:
     - name: Backup IOS
       ios_command:
         commands: show {{ var }}
