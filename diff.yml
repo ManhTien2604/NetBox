@@ -1,0 +1,37 @@
+---
+- host: all
+  tasks:
+    - name: Get cksum of my First file
+      stat:
+        path : "/tmp/base.txt"
+      register: myfirstfile
+
+    - name: Current SHA1
+      set_fact:
+        mf1sha1: "{{ myfirstfile.stat.checksum }}"
+
+    - name: Get cksum of my Second File (If needed you can jump this)
+      stat:
+        path : "/tmp/new.txt"
+      register: mysecondfile
+
+    - name: Current SHA1
+      set_fact:
+        mf2sha1: "{{ mysecondfile.stat.checksum }}"
+
+#    - name: Compilation Changed
+#      debug:
+#        msg: "File Compare"
+#      failed_when:  mf2sha1 != mf1sha1
+
+    - name: Sending an e-mail using Gmail SMTP servers
+      mail:
+        host: smtp.gmail.com
+        port: 587
+        username: hvmtdoan1@gmail.com
+        password: Tienalone123@
+        to: huynhvanmanhtien98@gmail.com
+        subject: Ansible Report
+        body: System [[ ansible_hostname ]] has been successfully provisioned.
+      delegate_to: localhost
+      when: mf2sha1 != mf1sha1
