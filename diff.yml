@@ -3,8 +3,8 @@
   tasks:
     - name: "Only show diff between test1.txt & test2.txt" 
       copy:
-        remote_src: /tmp/new.txt
-        remote_dest: /tmp/base.txt
+        src: "/tmp/new.txt"
+        dest: "/tmp/base.txt"
       check_mode: yes
       diff: yes
 
