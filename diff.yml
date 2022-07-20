@@ -22,8 +22,8 @@
     - name: Compilation Changed
       debug:
         msg: "File Compare"
-        when:  mysecondfile ==  myfirstfile
+      when:  mysecondfile ==  myfirstfile
       debug:
         msg: "File Different"
-        when: mysecondfile !=  myfirstfile
+      when: mysecondfile !=  myfirstfile
 
