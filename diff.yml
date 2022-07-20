@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: localhost
   tasks:
     - name: "Only show diff between test1.txt & test2.txt" 
       copy:
