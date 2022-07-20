@@ -1,10 +1,13 @@
 ---
 - hosts: all
   tasks:
+  var_prompt:
+    - name: var
+      prompt: What var?
+      private: no
 
     - name: Backup IOS
-      ios_config:
-        backup: yes  
-        backup_options:
-          filename: "{{ inventory_hostname }}.txt"
-          dir_path: /tmp/
+      ios_command:
+        commands: show {{ var }}
+      register: abc
+    - debug: var=abc.stdout_lines
