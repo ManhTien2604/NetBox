@@ -28,9 +28,9 @@
       mail:
         host: smtp.gmail.com
         port: 587
-        username: hvmtdoan1@gmail.com
-        password: Tienalone123@
-        to: huynhvanmanhtien98@gmail.com
+        username: huynhvanmanhtien98@gmail.com
+        password: tienalone123456
+        to: hvtmdoan1@gmail.com
         subject: Ansible Report
         body: System [[ ansible_hostname ]] has been successfully provisioned.
       delegate_to: localhost
